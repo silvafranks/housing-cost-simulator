@@ -23,12 +23,15 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     private Address address;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Product product;
 
     private LocalDateTime created;
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    private Store store;
 
 }
