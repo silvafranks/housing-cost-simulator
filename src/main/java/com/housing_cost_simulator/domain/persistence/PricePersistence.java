@@ -1,5 +1,7 @@
 package com.housing_cost_simulator.domain.persistence;
 
-public interface PricePersistence {
+import com.housing_cost_simulator.domain.model.entities.Price;
 
+public interface PricePersistence {
+    void persist(Price domain);
 }

@@ -4,7 +4,7 @@ import com.housing_cost_simulator.application.dto.UserDto;
 import com.housing_cost_simulator.domain.model.entities.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
     User userDtoToUser(UserDto dto);

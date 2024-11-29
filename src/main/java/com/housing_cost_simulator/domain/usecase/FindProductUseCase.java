@@ -1,20 +1,21 @@
 package com.housing_cost_simulator.domain.usecase;
 
 import com.housing_cost_simulator.application.validator.EmailValidator;
+import com.housing_cost_simulator.domain.model.entities.Product;
 import com.housing_cost_simulator.domain.model.entities.User;
+import com.housing_cost_simulator.domain.persistence.ProductPersistence;
 import com.housing_cost_simulator.domain.persistence.UserPersistence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FindUserUseCase {
+public class FindProductUseCase {
 
-    private final UserPersistence userPersistence;
+    private final ProductPersistence productPersistence;
 
-    public User execute(String email) {
-        EmailValidator.isValid(email);
-        return userPersistence.findByEmail(email);
+    public Product execute(String name) {
+//        EmailValidator.isValid(email);
+        return productPersistence.findByProductName(name);
     }
-
 }
