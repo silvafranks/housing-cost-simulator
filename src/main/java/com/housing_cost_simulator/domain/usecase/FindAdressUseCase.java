@@ -1,0 +1,17 @@
+package com.housing_cost_simulator.domain.usecase;
+
+import com.housing_cost_simulator.infrastructure.api.ApiMocha;
+import com.housing_cost_simulator.infrastructure.api.dto.AddressResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+public class FindAdressUseCase {
+
+    private final ApiMocha mocha;
+
+    public AddressResponseDto execute(String cep) {
+        return mocha.getAdress(cep);
+    }
+}
