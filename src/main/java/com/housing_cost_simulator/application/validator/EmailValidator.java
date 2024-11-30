@@ -10,7 +10,7 @@ public class EmailValidator {
 
     public static boolean isValid(String email) {
         if (email == null || email.isEmpty()) {
-            // TODO TROLL EXCEPTION
+            // TODO THROW EXCEPTION
             return false;
         }
 

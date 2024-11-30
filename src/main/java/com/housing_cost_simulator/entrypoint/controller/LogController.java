@@ -2,7 +2,10 @@ package com.housing_cost_simulator.entrypoint.controller;
 
 import static org.springframework.http.ResponseEntity.ok;
 
-import com.housing_cost_simulator.application.service.UserService;
+import com.housing_cost_simulator.application.dto.AddressDto;
+import com.housing_cost_simulator.application.dto.UserDto;
+import com.housing_cost_simulator.application.service.LogService;
+import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -14,19 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/log")
 @RequiredArgsConstructor
-public class UserController {
+public class LogController {
 
-    private final UserService userService;
+    private final LogService logService;
 
-    @Operation(description = "Search user by email!")
+    @Operation(description = "Search for users with the most searches")
     @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "Successfully")
     })
-    @GetMapping("/{email}")
-    public ResponseEntity<?> findUserByEmail(@PathVariable String email) {
-        System.out.println("HELLO WORLD");
-        return ok(userService.findUserByEmail(email));
+    @GetMapping("user-most-searches")
+    public ResponseEntity<UserSearchCountDto> findAddress() {
+        //@PathVariable String CEP
+        return ok(logService.getUserMostSearches());
     }
 }

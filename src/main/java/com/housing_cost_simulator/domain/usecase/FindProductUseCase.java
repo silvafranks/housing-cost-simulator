@@ -15,7 +15,6 @@ public class FindProductUseCase {
     private final ProductPersistence productPersistence;
 
     public Product execute(String name) {
-//        EmailValidator.isValid(email);
         return productPersistence.findByProductName(name);
     }
 }

@@ -21,7 +21,7 @@ public class AddressController {
     @GetMapping("/{cep}")
     public ResponseEntity<AddressDto> findAddress(@PathVariable String cep) {
         //@PathVariable String CEP
-        return ok(addressService.findAddressByCEP(cep));
+        return ok(addressService.findAddressByCEP(cep, null));
     }
 
 }
