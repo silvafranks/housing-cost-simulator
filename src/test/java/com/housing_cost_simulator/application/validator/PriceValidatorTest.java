@@ -30,7 +30,7 @@ class PriceValidatorTest {
               .product(ProductDto.builder()
                     .id(1L)
                     .name("Produto Teste")
-                    .subtipo("Eletrônico")
+                    .subtype("Eletrônico")
                     .build())
               .build();
 
@@ -47,7 +47,7 @@ class PriceValidatorTest {
               .product(ProductDto.builder()
                     .id(1L)
                     .name("Produto Teste")
-                    .subtipo("Eletrônico")
+                    .subtype("Eletrônico")
                     .build())
               .build();
 
@@ -70,7 +70,7 @@ class PriceValidatorTest {
               .product(ProductDto.builder()
                     .id(1L)
                     .name("Produto Teste")
-                    .subtipo("Eletrônico")
+                    .subtype("Eletrônico")
                     .build())
               .build();
 

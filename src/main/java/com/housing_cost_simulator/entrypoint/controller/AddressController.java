@@ -4,6 +4,9 @@ import static org.springframework.http.ResponseEntity.ok;
 
 import com.housing_cost_simulator.application.dto.AddressDto;
 import com.housing_cost_simulator.application.service.AddressService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +21,12 @@ public class AddressController {
 
     private final AddressService addressService;
 
+    @Operation(description = "Find Adress by CEP")
+    @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Successfully")
+    })
     @GetMapping("/{cep}")
     public ResponseEntity<AddressDto> findAddress(@PathVariable String cep) {
-        //@PathVariable String CEP
         return ok(addressService.findAddressByCEP(cep, null));
     }
 

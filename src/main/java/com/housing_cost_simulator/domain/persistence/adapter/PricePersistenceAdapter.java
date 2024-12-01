@@ -8,6 +8,7 @@ import com.housing_cost_simulator.infrastructure.repository.mysql.PriceRepositor
 import com.housing_cost_simulator.infrastructure.repository.mysql.ProductRepository;
 import com.housing_cost_simulator.infrastructure.repository.mysql.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,12 +22,14 @@ public class PricePersistenceAdapter implements PricePersistence {
     @Override
     public void persist(Price domain) {
         Product product = productRepository.findByName(domain.getProduct().getName())
-              .orElseGet(()-> {
+              .orElseGet(() -> {
                   Product newProduct = domain.getProduct();
                   return productRepository.save(newProduct);
               });
 
-        User create = userRepository.findByEmail(domain.getCreator().getEmail());
+        User create = userRepository.findByEmail(domain.getCreator().getEmail())
+              .orElseThrow(() -> new UsernameNotFoundException(
+                    "User not found with username: " + domain.getCreator().getEmail()));
 
         domain.setCreator(create);
         domain.setProduct(product);

@@ -20,7 +20,7 @@ public class ProductDto {
 
     private String name;
 
-    private String subtipo;
+    private String subtype;
 
     private UserDto creator;
 

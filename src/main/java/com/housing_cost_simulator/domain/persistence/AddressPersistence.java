@@ -1,5 +1,7 @@
 package com.housing_cost_simulator.domain.persistence;
 
-public interface AddressPersistence {
+import com.housing_cost_simulator.domain.model.entities.Address;
 
+public interface AddressPersistence {
+    void saveAddress(Address address);
 }
