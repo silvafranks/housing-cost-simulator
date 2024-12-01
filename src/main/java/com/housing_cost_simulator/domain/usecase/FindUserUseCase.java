@@ -14,7 +14,7 @@ public class FindUserUseCase {
 
     public User execute(String email) {
         EmailValidator.isValid(email);
-        return userPersistence.findByEmail(email);
+        return userPersistence.findUserByEmail(email);
     }
 
 }

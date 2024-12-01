@@ -1,4 +1,4 @@
-package com.housing_cost_simulator.domain.persistence.impl;
+package com.housing_cost_simulator.domain.persistence.adapter;
 
 import com.housing_cost_simulator.domain.model.entities.Product;
 import com.housing_cost_simulator.domain.persistence.ProductPersistence;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ProductPersistenceImpl implements ProductPersistence {
+public class ProductPersistenceAdapter implements ProductPersistence {
 
     private final ProductRepository productRepository;
 

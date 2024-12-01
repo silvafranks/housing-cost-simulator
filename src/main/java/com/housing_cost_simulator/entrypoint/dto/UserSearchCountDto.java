@@ -1,7 +1,8 @@
-package com.housing_cost_simulator.application.dto;
+package com.housing_cost_simulator.entrypoint.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+@NoArgsConstructor
+@Data
+public class UserSearchCountDto {
     private String email;
+    private long count;
 }

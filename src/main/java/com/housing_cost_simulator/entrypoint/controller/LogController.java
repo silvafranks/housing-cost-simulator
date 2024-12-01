@@ -3,7 +3,9 @@ package com.housing_cost_simulator.entrypoint.controller;
 import static org.springframework.http.ResponseEntity.ok;
 
 import com.housing_cost_simulator.application.dto.AddressDto;
-import com.housing_cost_simulator.application.service.AddressService;
+import com.housing_cost_simulator.application.dto.UserDto;
+import com.housing_cost_simulator.application.service.LogService;
+import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,19 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/log")
 @RequiredArgsConstructor
-public class AddressController {
+public class LogController {
 
-    private final AddressService addressService;
+    private final LogService logService;
 
-    @Operation(description = "Find Adress by CEP")
+    @Operation(description = "Search for users with the most searches")
     @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "Successfully")
     })
-    @GetMapping("/{cep}")
-    public ResponseEntity<AddressDto> findAddress(@PathVariable String cep) {
-        return ok(addressService.findAddressByCEP(cep, null));
+    @GetMapping("user-most-searches")
+    public ResponseEntity<UserSearchCountDto> findAddress() {
+        //@PathVariable String CEP
+        return ok(logService.getUserMostSearches());
     }
-
 }

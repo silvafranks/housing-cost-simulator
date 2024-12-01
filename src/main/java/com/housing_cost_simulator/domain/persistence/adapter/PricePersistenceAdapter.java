@@ -1,7 +1,5 @@
-package com.housing_cost_simulator.domain.persistence.impl;
+package com.housing_cost_simulator.domain.persistence.adapter;
 
-import com.housing_cost_simulator.application.dto.ProductDto;
-import com.housing_cost_simulator.application.dto.UserDto;
 import com.housing_cost_simulator.domain.model.entities.Price;
 import com.housing_cost_simulator.domain.model.entities.Product;
 import com.housing_cost_simulator.domain.model.entities.User;
@@ -9,26 +7,29 @@ import com.housing_cost_simulator.domain.persistence.PricePersistence;
 import com.housing_cost_simulator.infrastructure.repository.mysql.PriceRepository;
 import com.housing_cost_simulator.infrastructure.repository.mysql.ProductRepository;
 import com.housing_cost_simulator.infrastructure.repository.mysql.UserRepository;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PricePersistenceImpl implements PricePersistence {
+public class PricePersistenceAdapter implements PricePersistence {
 
     private final PriceRepository priceRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+
     @Override
     public void persist(Price domain) {
         Product product = productRepository.findByName(domain.getProduct().getName())
-              .orElseGet(()-> {
+              .orElseGet(() -> {
                   Product newProduct = domain.getProduct();
                   return productRepository.save(newProduct);
               });
 
-        User create = userRepository.findByEmail(domain.getCreator().getEmail());
+        User create = userRepository.findByEmail(domain.getCreator().getEmail())
+              .orElseThrow(() -> new UsernameNotFoundException(
+                    "User not found with username: " + domain.getCreator().getEmail()));
 
         domain.setCreator(create);
         domain.setProduct(product);
