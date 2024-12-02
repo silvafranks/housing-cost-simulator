@@ -7,6 +7,7 @@ import com.housing_cost_simulator.application.service.AddressService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/address")
 @RequiredArgsConstructor
+@Tag(name = "Address")
 public class AddressController {
 
     private final AddressService addressService;
 
-    @Operation(description = "Find Adress by CEP")
+    @Operation(description = "Find Address by CEP")
     @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "Successfully")
     })

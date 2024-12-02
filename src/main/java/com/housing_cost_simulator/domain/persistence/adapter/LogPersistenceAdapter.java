@@ -40,7 +40,7 @@ public class LogPersistenceAdapter implements LogPersistence {
 
         AggregationResults<UserSearchCountDto> results = mongoTemplate.aggregate(aggregation, "log", UserSearchCountDto.class);
         UserSearchCountDto mostFrequentUser = results.getUniqueMappedResult();
-        System.out.printf(mostFrequentUser.toString());
+        System.out.printf( results.getRawResults().toString());
         return results.getUniqueMappedResult();
     }
 }

@@ -8,6 +8,16 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     defer-datasource-initialization: true
     hibernate:
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mydb
+      host: mongodb
+      port: 27017
+      database: mydb
+      username: root
+      password: root
+      authentication-database: admin
 #      ddl-auto: update
 #      show-sql: true
 #      properties:

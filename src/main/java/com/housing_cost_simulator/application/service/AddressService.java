@@ -8,7 +8,7 @@ import com.housing_cost_simulator.domain.model.entities.Address;
 import com.housing_cost_simulator.domain.model.entities.User;
 import com.housing_cost_simulator.domain.usecase.CreateAddressUseCase;
 import com.housing_cost_simulator.domain.usecase.CreateLogUseCase;
-import com.housing_cost_simulator.domain.usecase.FindAdressUseCase;
+import com.housing_cost_simulator.domain.usecase.FindAddressUseCase;
 import com.housing_cost_simulator.infrastructure.api.dto.AddressResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AddressService {
 
-    private final FindAdressUseCase findAdressUseCase;
+    private final FindAddressUseCase findAddressUseCase;
     private final AddressMapper addressMapper;
     private final CreateLogUseCase createLogUseCase;
     private final CreateAddressUseCase createAddressUseCase;
@@ -27,12 +27,12 @@ public class AddressService {
             throw new RuntimeException();
         }
 
-        AddressResponseDto execute = findAdressUseCase.execute(cep);
+        AddressResponseDto execute = findAddressUseCase.execute(cep);
         createLogUseCase.execute(user, addressMapper.addressResponseToAddress(execute));
-        return addressMapper.addressResponseToAdressDto(execute);
+        return addressMapper.addressResponseToAddressDto(execute);
     }
 
-    public void saveAdress(Address address) {
+    public void saveAddress(Address address) {
         createAddressUseCase.saveAddress(address);
     }
 

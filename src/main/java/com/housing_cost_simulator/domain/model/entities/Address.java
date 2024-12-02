@@ -26,7 +26,7 @@ public class Address {
 
     private String complement;
 
-    private String neighbohood;
+    private String neighborhood;
 
     private String state;
 

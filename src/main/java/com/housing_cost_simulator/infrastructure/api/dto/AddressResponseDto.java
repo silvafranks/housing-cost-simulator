@@ -13,7 +13,7 @@ public class AddressResponseDto {
 
     private String complement;
 
-    private String neighbohood;
+    private String neighborhood;
 
     private String state;
 

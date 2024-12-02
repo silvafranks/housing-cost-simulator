@@ -1,20 +1,19 @@
 version: '3.9'
+
 services:
   spring-boot-app:
-    image: openjdk:11-jre-slim
-    container_name: spring-boot-app
-    networks:
-      - app-network
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./target/housing_cost_simulator-0.0.1-SNAPSHOT.jar:/app.jar
     ports:
       - "8080:8080"
+    networks:
+      - app-network
     depends_on:
-      - mongodb
-      - mysql
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
@@ -22,15 +21,13 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/mydb
 
-
   mysql:
     image: mysql:8.0
     container_name: mysql
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
+      MONGO_INITDB_DATABASE: mydb
     networks:
       - app-network
     volumes:
@@ -53,14 +50,16 @@ services:
     volumes:
       - mongo-data:/data/db
     healthcheck:
-      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      test: [ "CMD", "mongosh", "--username", "root", "--password", "root", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
 
 volumes:
   mysql-data:
   mongo-data:
+    driver: local
 
 networks:
   app-network:

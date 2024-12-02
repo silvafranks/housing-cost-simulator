@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
@@ -14,6 +16,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 public class UserSearchCountDto {
+
+    @Field("_id")
     private String email;
     private long count;
 }

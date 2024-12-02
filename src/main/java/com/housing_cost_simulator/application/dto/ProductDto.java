@@ -22,8 +22,6 @@ public class ProductDto {
 
     private String subtype;
 
-    private UserDto creator;
-
     private List<PriceDto> price;
 
 }
