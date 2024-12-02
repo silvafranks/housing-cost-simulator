@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FindAdressUseCase {
+public class FindAddressUseCase {
 
     private final ApiMocha mocha;
 
     public AddressResponseDto execute(String cep) {
-        return mocha.getAdress(cep);
+        return mocha.getAddress(cep);
     }
 }

@@ -35,7 +35,7 @@ public class RegisterUserUsecase {
         Address address = addressMapper.addressDtoToAddress(
               addressService.findAddressByCEP(cep, null));
 
-        addressService.saveAdress(address);
+        addressService.saveAddress(address);
 
         User userToBeSaved = this.buildUser(
               address,

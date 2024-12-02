@@ -13,3 +13,16 @@ spring:
 #      properties:
 #        hibernate:
 #          format_sql: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mydb
+      host: mongodb
+      port: 27017
+      database: mydb
+      username: root
+      password: root
+      authentication-database: admin
+
+
+jwt:
+  secret: ${SECRET_KEY:ba26def800e98b6c29dd0288af3e5b137c7308739c692ce359d25df0d2b0be3e}

@@ -9,10 +9,6 @@ public class PriceValidator {
             throw new RuntimeException("price address must not be empty!");
         }
 
-        if (isNull(dto.getCreator())) {
-            throw new RuntimeException("Creator of a price cannot be empty");
-        }
-
         if (isNull(dto.getProduct())) {
             throw new RuntimeException("Product of a price cannot be empty");
         }

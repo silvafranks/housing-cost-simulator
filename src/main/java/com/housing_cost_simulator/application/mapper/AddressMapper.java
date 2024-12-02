@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 
-    AddressDto addressResponseToAdressDto(AddressResponseDto responseDto);
+    AddressDto addressResponseToAddressDto(AddressResponseDto responseDto);
     Address addressResponseToAddress(AddressResponseDto responseDto);
     Address addressDtoToAddress(AddressDto addressDto);
 }

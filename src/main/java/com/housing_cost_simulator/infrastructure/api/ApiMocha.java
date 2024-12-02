@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ApiMocha {
 
     @GetMapping("/teste/{cep}")
-    AddressResponseDto getAdress(@PathVariable("cep") String cep);
+    AddressResponseDto getAddress(@PathVariable("cep") String cep);
 }
