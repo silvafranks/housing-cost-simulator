@@ -1,7 +1,6 @@
 package com.housing_cost_simulator.infrastructure.repository.mysql;
 
 import com.housing_cost_simulator.domain.model.entities.User;
-import com.housing_cost_simulator.domain.persistence.UserPersistence;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,20 +1,19 @@
 package com.housing_cost_simulator.domain.usecase;
 
 import com.housing_cost_simulator.application.dto.PriceDto;
-import com.housing_cost_simulator.application.mapper.PriceMapper;
 import com.housing_cost_simulator.infrastructure.persistence.PricePersistence;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class CreatePriceUseCase {
+public class SearchPriceByNeighbourhood {
 
     private final PricePersistence pricePersistence;
-    private final PriceMapper priceMapper;
 
-    public void execute(PriceDto priceDto){
-        pricePersistence.persist(priceMapper.priceDtoToPrice(priceDto));
+    public Map<String, PriceDto> execute(String productName) {
+
+        return pricePersistence.searchLastPriceByNeighbourhood(productName);
     }
-
 }

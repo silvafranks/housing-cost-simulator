@@ -1,7 +1,7 @@
 package com.housing_cost_simulator.domain.usecase;
 
 import com.housing_cost_simulator.domain.model.entities.Address;
-import com.housing_cost_simulator.domain.persistence.AddressPersistence;
+import com.housing_cost_simulator.infrastructure.persistence.AddressPersistence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

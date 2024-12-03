@@ -1,8 +1,7 @@
-package com.housing_cost_simulator.domain.persistence.adapter;
+package com.housing_cost_simulator.infrastructure.persistence.adapter;
 
 import com.housing_cost_simulator.domain.model.entities.Log;
-import com.housing_cost_simulator.domain.model.entities.User;
-import com.housing_cost_simulator.domain.persistence.LogPersistence;
+import com.housing_cost_simulator.infrastructure.persistence.LogPersistence;
 import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 import com.housing_cost_simulator.infrastructure.repository.mongo.LogRepository;
 import lombok.RequiredArgsConstructor;
