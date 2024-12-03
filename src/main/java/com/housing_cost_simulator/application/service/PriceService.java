@@ -6,9 +6,11 @@ import com.housing_cost_simulator.application.dto.AddressDto;
 import com.housing_cost_simulator.application.dto.PriceDto;
 import com.housing_cost_simulator.application.mapper.UserMapper;
 import com.housing_cost_simulator.domain.model.entities.User;
-import com.housing_cost_simulator.domain.persistence.UserPersistence;
 import com.housing_cost_simulator.domain.usecase.CreatePriceUseCase;
 import com.housing_cost_simulator.domain.usecase.RecoverLoggedUserUseCase;
+import com.housing_cost_simulator.domain.usecase.SearchPriceByNeighbourhood;
+import com.housing_cost_simulator.infrastructure.persistence.UserPersistence;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class PriceService {
     private final UserMapper userMapper;
     private final RecoverLoggedUserUseCase recoverLoggedUserUseCase;
     private final UserPersistence userPersistence;
+    private final SearchPriceByNeighbourhood searchPriceByNeighbourhood;
 
     public void createPrice(PriceDto priceDto) {
         isValid(priceDto);
@@ -34,6 +37,10 @@ public class PriceService {
 
         priceDto.setAddress(address);
         createPriceUseCase.execute(priceDto);
+    }
+
+    public Map<String, PriceDto> findPriceByNeighbourhood(String productName) {
+        return searchPriceByNeighbourhood.execute(productName);
     }
 
 }

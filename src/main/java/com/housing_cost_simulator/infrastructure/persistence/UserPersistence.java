@@ -1,4 +1,4 @@
-package com.housing_cost_simulator.domain.persistence;
+package com.housing_cost_simulator.infrastructure.persistence;
 
 import com.housing_cost_simulator.domain.model.entities.User;
 
