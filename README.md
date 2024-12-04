@@ -5,8 +5,8 @@ Este sistema foi desenvolvido para ajudar consumidores a economizarem ao realiza
 
 Funcionalidades
 - Comparação de Preços: Identifique o bairro com o menor preço para produtos específicos ou para o total de uma lista de compras.
-- Histórico de Preços: Analise quais bairros apresentaram os menores preços ao longo de meses.
-- Organização por Histórico: Liste os bairros com base em suas tendências de preços ao longo do tempo.
+- Histórico de Preços: Analise quais bairros apresentaram os menores e maiores preços ao longo de meses.
+- Ultimos preços: Liste os ultimos preços de cada bairro.
 
 ![Diagrama de cebola(1)](https://github.com/user-attachments/assets/22747a19-56e0-40b8-b7fc-2228089fb933)
 
