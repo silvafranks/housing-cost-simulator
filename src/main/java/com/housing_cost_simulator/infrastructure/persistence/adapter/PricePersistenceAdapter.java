@@ -2,6 +2,7 @@ package com.housing_cost_simulator.infrastructure.persistence.adapter;
 
 import com.housing_cost_simulator.application.dto.PriceDto;
 import com.housing_cost_simulator.application.mapper.PriceMapper;
+import com.housing_cost_simulator.domain.exception.UnprocessableEntityException;
 import com.housing_cost_simulator.domain.model.entities.Price;
 import com.housing_cost_simulator.domain.model.entities.Product;
 import com.housing_cost_simulator.domain.model.entities.User;
@@ -51,14 +52,33 @@ public class PricePersistenceAdapter implements PricePersistence {
 
     @Override
     public Map<String, PriceDto> searchLastPriceByNeighbourhood(String productName) {
-        List<Price> latestPriceByProductAndNeighborhoodNative = priceRepository.findByProduct_Name(
-              productName);
+        return this.getLatestPricesByNeighborhood(priceRepository.findByProduct_Name(
+              productName));
+    }
 
-        return this.getLatestPricesByNeighborhood(latestPriceByProductAndNeighborhoodNative);
+    @Override
+    public PriceDto findLowestPricePerProduct(String productName) {
+        List<Price> priceByProduct = priceRepository.findByProduct_Name(productName);
+
+        if (priceByProduct.isEmpty()) {
+            throw new UnprocessableEntityException("There is no such product");
+        }
+
+        Price price = priceByProduct.stream().min(Comparator.comparing(Price::getValue))
+              .orElseThrow();
+
+        return priceMapper.priceToPriceDto(price);
+    }
+
+    @Override
+    public PriceDto findMostExpensiveProduct(String productName) {
+        List<Price> productByName = priceRepository.findByProduct_Name(productName);
+        Price price = productByName.stream().max(Comparator.comparing(Price::getValue))
+              .orElseThrow();
+        return priceMapper.priceToPriceDto(price);
     }
 
     private Map<String, PriceDto> getLatestPricesByNeighborhood(List<Price> prices) {
-
         return prices.stream()
               .collect(Collectors.groupingBy(
                     p -> p.getAddress().getNeighborhood(),

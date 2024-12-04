@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
       name = "apiMocha",
-      url = "https://apimocha.com/exemplo23"
+      url = "https://cep-mock.free.beeceptor.com"
 )
 public interface ApiMocha {
 

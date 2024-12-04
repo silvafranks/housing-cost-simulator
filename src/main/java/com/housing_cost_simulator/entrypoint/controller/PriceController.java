@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/price")
 @RequiredArgsConstructor
-@Tag(name = "non-relational logs", description = "Insights from non-relational logs")
+@Tag(name = "Values on prices", description = "EndPoints on prices")
 public class PriceController {
 
     private final PriceService priceService;
@@ -37,11 +37,31 @@ public class PriceController {
 
     @Operation(description = "Find Firts Price By Neighbourhood")
     @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Successfully")
+          @ApiResponse(responseCode = "200", description = "Successfully"),
+          @ApiResponse(responseCode = "204", description = "No content")
     })
-    @GetMapping("firt-neighbourhood/{productName}")
-    public Map<String, PriceDto> findPriceByNeighbourhood(@PathVariable String productName) {
-        return priceService.findPriceByNeighbourhood(productName);
+    @GetMapping("/firt-neighbourhood/{productName}")
+    public ResponseEntity<Map<String, PriceDto>> findPriceByNeighbourhood(@PathVariable String productName) {
+        return ResponseEntity.ok(priceService.findPriceByNeighbourhood(productName));
     }
 
+    @Operation(description = "Search for the product with the lowest price")
+    @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Successfully"),
+          @ApiResponse(responseCode = "204", description = "No content")
+    })
+    @GetMapping("/lowest-price/{productName}")
+    public PriceDto findLowestPriceProduct(@PathVariable String productName) {
+        return priceService.findLowestPriceProduct(productName);
+    }
+
+    @Operation(description = "Demand for the most expensive product")
+    @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Successfully"),
+          @ApiResponse(responseCode = "204", description = "No content")
+    })
+    @GetMapping("/most-expensive/{productName}")
+    public PriceDto findMostExpensiveProduct(@PathVariable String productName) {
+        return priceService.findMostExpensiveProduct(productName);
+    }
 }

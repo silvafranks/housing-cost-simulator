@@ -4,6 +4,13 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: jdbc:mysql://mysql:3306/mydb
+    user: root
+    password: root
+    locations: classpath:db/migration/mysql
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     defer-datasource-initialization: true

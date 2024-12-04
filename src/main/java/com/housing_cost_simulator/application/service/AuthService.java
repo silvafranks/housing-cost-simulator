@@ -1,5 +1,6 @@
 package com.housing_cost_simulator.application.service;
 
+import com.housing_cost_simulator.domain.exception.UnauthorizedException;
 import com.housing_cost_simulator.entrypoint.dto.LoginRequest;
 import com.housing_cost_simulator.entrypoint.dto.TokenResponse;
 import com.housing_cost_simulator.shared.util.JwtUtil;
@@ -30,7 +31,7 @@ public class AuthService {
 
         } catch (
               AuthenticationException e) {
-            throw new RuntimeException("Invalid username or password" + e);
+            throw new UnauthorizedException("Invalid username or password" + e);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.housing_cost_simulator.application.mapper;
 import com.housing_cost_simulator.application.dto.AddressDto;
 import com.housing_cost_simulator.application.dto.PriceDto;
 import com.housing_cost_simulator.domain.model.entities.Address;
+import com.housing_cost_simulator.domain.model.entities.LogPrice;
 import com.housing_cost_simulator.domain.model.entities.Price;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,5 +15,7 @@ public interface PriceMapper {
 
     @Mapping(target = "product.price", ignore = true)
     PriceDto priceToPriceDto(Price domain);
+
+    LogPrice priceDtoToLogPrice(PriceDto dto);
 
 }

@@ -9,4 +9,6 @@ public interface PricePersistence {
     void persist(Price domain);
 
     Map<String, PriceDto> searchLastPriceByNeighbourhood(String productName);
+    PriceDto findLowestPricePerProduct(String productName);
+    PriceDto findMostExpensiveProduct(String productName);
 }

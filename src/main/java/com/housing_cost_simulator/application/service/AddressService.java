@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import com.housing_cost_simulator.application.dto.AddressDto;
 import com.housing_cost_simulator.application.mapper.AddressMapper;
+import com.housing_cost_simulator.domain.exception.UnprocessableEntityException;
 import com.housing_cost_simulator.domain.model.entities.Address;
 import com.housing_cost_simulator.domain.model.entities.User;
 import com.housing_cost_simulator.domain.usecase.CreateAddressUseCase;
@@ -24,9 +25,10 @@ public class AddressService {
 
     public AddressDto findAddressByCEP(String cep, User user) {
         if (isEmpty(cep)) {
-            throw new RuntimeException();
+            throw new UnprocessableEntityException("Cep Cannot Be Null");
         }
 
+        //TODO trocar user
         AddressResponseDto execute = findAddressUseCase.execute(cep);
         createLogUseCase.execute(user, addressMapper.addressResponseToAddress(execute));
         return addressMapper.addressResponseToAddressDto(execute);
