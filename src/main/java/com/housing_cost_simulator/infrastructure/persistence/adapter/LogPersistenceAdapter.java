@@ -42,8 +42,4 @@ public class LogPersistenceAdapter implements LogPersistence {
         return results.getUniqueMappedResult();
     }
 
-    @Override
-    public PriceWithMoreRecords getPriceWithMoreRecords() {
-        return null;
-    }
 }
