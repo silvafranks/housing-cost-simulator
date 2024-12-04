@@ -16,4 +16,9 @@ public class ProductPersistenceAdapter implements ProductPersistence {
     public Product findByProductName(String name) {
         return productRepository.findByName(name).orElse(null);
     }
+
+    @Override
+    public void persist(Product product) {
+        productRepository.save(product);
+    }
 }

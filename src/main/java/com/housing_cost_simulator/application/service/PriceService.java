@@ -36,11 +36,8 @@ public class PriceService {
 
         isValid(priceDto);
 
-        UserDto loggedUser = userMapper.userToUserDto(userPersistence.findUserByEmail(
-              recoverLoggedUserUseCase.getCurrentUser()));
 
-        AddressDto address = addressService.findAddressByCEP(priceDto.getAddress().getCep(),
-              userMapper.userDtoToUser(loggedUser));
+        AddressDto address = addressService.findAddressByCEP(priceDto.getAddress().getCep());
 
         priceDto.setAddress(address);
 

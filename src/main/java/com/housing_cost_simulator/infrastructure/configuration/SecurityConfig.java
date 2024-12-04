@@ -33,7 +33,7 @@ public class SecurityConfig{
         http
               .csrf().disable()
               .authorizeRequests()
-              .antMatchers("/api/auth/login",
+              .antMatchers("/auth/login",
                     "/user/register",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
