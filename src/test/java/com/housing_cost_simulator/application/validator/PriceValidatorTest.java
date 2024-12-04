@@ -6,6 +6,7 @@ import com.housing_cost_simulator.application.dto.AddressDto;
 import com.housing_cost_simulator.application.dto.PriceDto;
 import com.housing_cost_simulator.application.dto.ProductDto;
 import com.housing_cost_simulator.application.dto.UserDto;
+import com.housing_cost_simulator.domain.exception.UnprocessableEntityException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -45,7 +46,7 @@ class PriceValidatorTest {
                     .build())
               .build();
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> PriceValidator.isValid(priceDto));
+        UnprocessableEntityException exception = assertThrows(UnprocessableEntityException.class, () -> PriceValidator.isValid(priceDto));
         assert exception.getMessage().equals("price address must not be empty!");
     }
 
@@ -67,7 +68,7 @@ class PriceValidatorTest {
                     .build())
               .build();
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> PriceValidator.isValid(priceDto));
+        UnprocessableEntityException exception = assertThrows(UnprocessableEntityException.class, () -> PriceValidator.isValid(priceDto));
         assert exception.getMessage().equals("Creator of a price cannot be empty");
     }
 
@@ -85,7 +86,7 @@ class PriceValidatorTest {
               .product(null)
               .build();
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> PriceValidator.isValid(priceDto));
+        UnprocessableEntityException exception = assertThrows(UnprocessableEntityException.class, () -> PriceValidator.isValid(priceDto));
         assert exception.getMessage().equals("Product of a price cannot be empty");
     }
 }

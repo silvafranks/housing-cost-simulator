@@ -1,8 +1,8 @@
-package com.housing_cost_simulator.domain.persistence.adapter;
+package com.housing_cost_simulator.infrastructure.persistence.adapter;
 
 import com.housing_cost_simulator.domain.model.entities.Log;
-import com.housing_cost_simulator.domain.model.entities.User;
-import com.housing_cost_simulator.domain.persistence.LogPersistence;
+import com.housing_cost_simulator.entrypoint.dto.PriceWithMoreRecords;
+import com.housing_cost_simulator.infrastructure.persistence.LogPersistence;
 import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 import com.housing_cost_simulator.infrastructure.repository.mongo.LogRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +39,11 @@ public class LogPersistenceAdapter implements LogPersistence {
         );
 
         AggregationResults<UserSearchCountDto> results = mongoTemplate.aggregate(aggregation, "log", UserSearchCountDto.class);
-        UserSearchCountDto mostFrequentUser = results.getUniqueMappedResult();
-        System.out.printf( results.getRawResults().toString());
         return results.getUniqueMappedResult();
+    }
+
+    @Override
+    public PriceWithMoreRecords getPriceWithMoreRecords() {
+        return null;
     }
 }

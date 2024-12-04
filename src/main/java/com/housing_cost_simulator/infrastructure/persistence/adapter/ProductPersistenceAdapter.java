@@ -1,7 +1,7 @@
-package com.housing_cost_simulator.domain.persistence.adapter;
+package com.housing_cost_simulator.infrastructure.persistence.adapter;
 
 import com.housing_cost_simulator.domain.model.entities.Product;
-import com.housing_cost_simulator.domain.persistence.ProductPersistence;
+import com.housing_cost_simulator.infrastructure.persistence.ProductPersistence;
 import com.housing_cost_simulator.infrastructure.repository.mysql.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

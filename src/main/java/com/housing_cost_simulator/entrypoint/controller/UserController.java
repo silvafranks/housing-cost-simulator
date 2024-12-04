@@ -24,7 +24,7 @@ public class UserController {
     @Operation(description = "Register user")
     @ApiResponses(value = {
           @ApiResponse(responseCode = "201", description = "User created"),
-          @ApiResponse(responseCode = "422", description = "Successfully")
+          @ApiResponse(responseCode = "422", description = "Email already registered")
     })
     @PostMapping("/register")
     public ResponseEntity<Void> findUserByEmail(@RequestBody RegisterUserRequest userRequest) {

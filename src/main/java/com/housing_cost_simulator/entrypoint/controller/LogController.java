@@ -31,8 +31,17 @@ public class LogController {
           @ApiResponse(responseCode = "403", description = "Unauthorized")
     })
     @GetMapping("user-most-searches")
-    public ResponseEntity<UserSearchCountDto> findAddress() {
-        //@PathVariable String CEP
+    public ResponseEntity<UserSearchCountDto> findUserMostSearches() {
+        return ok(logService.getUserMostSearches());
+    }
+
+    @Operation(description = "Search for users with the most searches")
+    @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Successfully"),
+          @ApiResponse(responseCode = "403", description = "Unauthorized")
+    })
+    @GetMapping("product-most-")
+    public ResponseEntity<UserSearchCountDto> find() {
         return ok(logService.getUserMostSearches());
     }
 }

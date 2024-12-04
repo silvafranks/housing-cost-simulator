@@ -4,9 +4,10 @@ import static java.util.Objects.nonNull;
 
 import com.housing_cost_simulator.application.mapper.AddressMapper;
 import com.housing_cost_simulator.application.service.AddressService;
+import com.housing_cost_simulator.domain.exception.UnprocessableEntityException;
 import com.housing_cost_simulator.domain.model.entities.Address;
 import com.housing_cost_simulator.domain.model.entities.User;
-import com.housing_cost_simulator.domain.persistence.UserPersistence;
+import com.housing_cost_simulator.infrastructure.persistence.UserPersistence;
 import com.housing_cost_simulator.entrypoint.dto.RegisterUserRequest;
 import com.housing_cost_simulator.shared.util.PasswordEncoderUtil;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,12 @@ public class RegisterUserUsecase {
     private final AddressService addressService;
     private final AddressMapper addressMapper;
     private final PasswordEncoderUtil passwordEncoderUtil;
-    private final RecoverLoggedUserUseCase recoverLoggedUserUseCase;
 
 
     public void execute(RegisterUserRequest userRequest) {
 
         if (nonNull(findUserUseCase.execute(userRequest.getEmail()))) {
-            throw new RuntimeException("Email already registered");
+            throw new UnprocessableEntityException("Email already registered");
         }
 
         String cep = userRequest.getCep();
