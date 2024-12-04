@@ -33,7 +33,8 @@ public class RegisterUserUsecase {
         String cep = userRequest.getCep();
 
         Address address = addressMapper.addressDtoToAddress(
-              addressService.findAddressByCEP(cep, null));
+              addressService.findAddressByCEP(cep)
+        );
 
         addressService.saveAddress(address);
 

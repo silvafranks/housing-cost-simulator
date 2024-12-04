@@ -29,7 +29,7 @@ public class AddressController {
     })
     @GetMapping("/{cep}")
     public ResponseEntity<AddressDto> findAddress(@PathVariable String cep) {
-        return ok(addressService.findAddressByCEP(cep, null));
+        return ok(addressService.findAddressByCEP(cep));
     }
 
 }

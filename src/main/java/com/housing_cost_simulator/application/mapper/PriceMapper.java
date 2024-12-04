@@ -17,5 +17,6 @@ public interface PriceMapper {
     PriceDto priceToPriceDto(Price domain);
 
     LogPrice priceDtoToLogPrice(PriceDto dto);
+    LogPrice priceToLogPrice(Price dto);
 
 }

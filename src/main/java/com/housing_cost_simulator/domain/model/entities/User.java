@@ -35,7 +35,4 @@ public class User {
     @OneToOne
     private Address address;
 
-    @OneToMany
-    private List<Store> stores;
-
 }

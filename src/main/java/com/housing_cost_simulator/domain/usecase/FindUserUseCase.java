@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 public class FindUserUseCase {
 
     private final UserPersistence userPersistence;
+    private final EmailValidator emailValidator;
 
     public User execute(String email) {
-        EmailValidator.isValid(email);
+        emailValidator.isValid(email);
         return userPersistence.findUserByEmail(email);
     }
 

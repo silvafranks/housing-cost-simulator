@@ -1,9 +1,6 @@
 package com.housing_cost_simulator.domain.model.entities;
 
-import com.housing_cost_simulator.application.dto.UserDto;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +14,7 @@ public class LogPrice {
     @Id
     private String id;
     private Address address;
-    private UserDto user;
+    private User user;
     private Product product;
     private LocalDateTime created = LocalDateTime.now().minusHours(3);
 
