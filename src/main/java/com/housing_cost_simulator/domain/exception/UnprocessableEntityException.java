@@ -9,9 +9,4 @@ public class UnprocessableEntityException extends RuntimeException{
     public UnprocessableEntityException(String message) {
         super(message);
     }
-
-    @Override
-    public Throwable fillInStackTrace() {
-        return this;
-    }
 }

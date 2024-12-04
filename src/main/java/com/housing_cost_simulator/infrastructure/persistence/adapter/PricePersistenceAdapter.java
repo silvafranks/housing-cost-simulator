@@ -51,40 +51,45 @@ public class PricePersistenceAdapter implements PricePersistence {
     }
 
     @Override
-    public Map<String, PriceDto> searchLastPriceByNeighbourhood(String productName) {
+    public Map<String, Price> searchLastPriceByNeighbourhood(String productName) {
         return this.getLatestPricesByNeighborhood(priceRepository.findByProduct_Name(
               productName));
     }
+    private Map<String, PriceDto> convertToPriceDto(Map<String, Price> priceMap) {
+        return priceMap.entrySet().stream()
+              .collect(Collectors.toMap(
+                    Map.Entry::getKey, // A chave continua a mesma
+                    entry -> priceMapper.priceToPriceDto(entry.getValue()) // Converte o valor para DTO
+              ));
+    }
+
 
     @Override
-    public PriceDto findLowestPricePerProduct(String productName) {
+    public Price findLowestPricePerProduct(String productName) {
         List<Price> priceByProduct = priceRepository.findByProduct_Name(productName);
 
         if (priceByProduct.isEmpty()) {
             throw new UnprocessableEntityException("There is no such product");
         }
 
-        Price price = priceByProduct.stream().min(Comparator.comparing(Price::getValue))
+        return priceByProduct.stream().min(Comparator.comparing(Price::getValue))
               .orElseThrow();
-
-        return priceMapper.priceToPriceDto(price);
     }
 
     @Override
-    public PriceDto findMostExpensiveProduct(String productName) {
+    public Price findMostExpensiveProduct(String productName) {
         List<Price> productByName = priceRepository.findByProduct_Name(productName);
-        Price price = productByName.stream().max(Comparator.comparing(Price::getValue))
+        return productByName.stream().max(Comparator.comparing(Price::getValue))
               .orElseThrow();
-        return priceMapper.priceToPriceDto(price);
     }
 
-    private Map<String, PriceDto> getLatestPricesByNeighborhood(List<Price> prices) {
+    private Map<String, Price> getLatestPricesByNeighborhood(List<Price> prices) {
         return prices.stream()
               .collect(Collectors.groupingBy(
                     p -> p.getAddress().getNeighborhood(),
                     Collectors.collectingAndThen(
                           Collectors.maxBy(Comparator.comparing(Price::getCreated)),
-                          opt -> opt.map(priceMapper::priceToPriceDto).orElse(null)
+                          opt -> opt.orElse(null)
                     )
               ));
     }

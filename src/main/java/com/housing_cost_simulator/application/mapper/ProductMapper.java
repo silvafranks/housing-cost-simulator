@@ -9,8 +9,8 @@ import org.mapstruct.Mapping;
 public interface ProductMapper {
 
     @Mapping(target = "price", ignore = true)
-    ProductDto produtoToProdutoDto(Product domain);
+    ProductDto productToProductDto(Product domain);
 
     @Mapping(target = "price", ignore = true)
-    Product produtoDtoToProduto(ProductDto domain);
+    Product productDtoToProduct(ProductDto domain);
 }

@@ -16,6 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 public class ProductAndRegistrationQuantity {
     @Field("_id")
-    private String email;
+    private String productName;
     private long count;
 }

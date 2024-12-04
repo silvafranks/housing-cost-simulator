@@ -2,7 +2,6 @@ package com.housing_cost_simulator.application.service;
 
 import com.housing_cost_simulator.application.dto.ProductDto;
 import com.housing_cost_simulator.application.mapper.ProductMapper;
-import com.housing_cost_simulator.domain.model.entities.Product;
 import com.housing_cost_simulator.domain.usecase.CreateProductUseCase;
 import com.housing_cost_simulator.domain.usecase.FindProductUseCase;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +18,11 @@ public class ProductService {
 
     public ProductDto findByProductName(String name) {
 
-        return productMapper.produtoToProdutoDto(findProductUseCase.execute(name));
+        return productMapper.productToProductDto(findProductUseCase.execute(name));
     }
 
     public void createProduct( ProductDto productDto) {
-        createProductUseCase.execute(productDto);
+        createProductUseCase.execute(productMapper.productDtoToProduct(productDto));
     }
 
 }

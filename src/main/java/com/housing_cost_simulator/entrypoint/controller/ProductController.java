@@ -36,7 +36,8 @@ public class ProductController {
     }
     @Operation(description = "Find Product By name")
     @ApiResponses(value = {
-          @ApiResponse(responseCode = "200", description = "Successfully")
+          @ApiResponse(responseCode = "200", description = "Successfully"),
+          @ApiResponse(responseCode = "422", description = "Product already exists")
     })
     @PostMapping("/create")
     public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto) {
