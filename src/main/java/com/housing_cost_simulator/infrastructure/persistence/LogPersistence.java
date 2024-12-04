@@ -8,5 +8,4 @@ import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 public interface LogPersistence {
     void persist(Log log);
     UserSearchCountDto getUserMostSearches();
-    PriceWithMoreRecords getPriceWithMoreRecords();
 }

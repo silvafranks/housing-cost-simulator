@@ -4,7 +4,6 @@ import static com.housing_cost_simulator.application.validator.EmailValidator.is
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.housing_cost_simulator.domain.exception.UnprocessableEntityException;
 import org.junit.jupiter.api.Test;
