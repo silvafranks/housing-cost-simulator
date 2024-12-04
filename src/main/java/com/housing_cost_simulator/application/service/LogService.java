@@ -1,8 +1,9 @@
 package com.housing_cost_simulator.application.service;
 
 
-import com.housing_cost_simulator.infrastructure.persistence.LogPersistence;
+import com.housing_cost_simulator.entrypoint.dto.ProductAndRegistrationQuantity;
 import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
+import com.housing_cost_simulator.infrastructure.persistence.LogPersistence;
 import com.housing_cost_simulator.infrastructure.persistence.LogPricePersistence;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,8 @@ public class LogService {
     public UserSearchCountDto getUserMostSearches() {
         return logPersistence.getUserMostSearches();
     }
-    public List<UserSearchCountDto> getProductMostSearches() {
+
+    public List<ProductAndRegistrationQuantity> getProductMostSearches() {
         return logPricePersistence.findProductMoreRegistration();
     }
 

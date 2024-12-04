@@ -3,7 +3,7 @@ package com.housing_cost_simulator.entrypoint.controller;
 import static org.springframework.http.ResponseEntity.ok;
 
 import com.housing_cost_simulator.application.service.LogService;
-import com.housing_cost_simulator.domain.model.entities.LogPrice;
+import com.housing_cost_simulator.entrypoint.dto.ProductAndRegistrationQuantity;
 import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -40,7 +40,7 @@ public class LogController {
           @ApiResponse(responseCode = "403", description = "Unauthorized")
     })
     @GetMapping("product-most-searches")
-    public ResponseEntity<List<UserSearchCountDto>> findProductMostSearches() {
+    public ResponseEntity<List<ProductAndRegistrationQuantity>> findProductMostSearches() {
         return ok(logService.getProductMostSearches());
     }
 }

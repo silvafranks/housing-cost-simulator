@@ -1,7 +1,7 @@
 package com.housing_cost_simulator.infrastructure.persistence.adapter;
 
 import com.housing_cost_simulator.domain.model.entities.LogPrice;
-import com.housing_cost_simulator.entrypoint.dto.UserSearchCountDto;
+import com.housing_cost_simulator.entrypoint.dto.ProductAndRegistrationQuantity;
 import com.housing_cost_simulator.infrastructure.persistence.LogPricePersistence;
 import com.housing_cost_simulator.infrastructure.repository.mongo.LogPriceRepository;
 import java.util.List;
@@ -25,14 +25,15 @@ public class LogPricePersistenceAdapter implements LogPricePersistence {
     }
 
     @Override
-    public List<UserSearchCountDto> findProductMoreRegistration() {
+    public List<ProductAndRegistrationQuantity> findProductMoreRegistration() {
         Aggregation aggregation = Aggregation.newAggregation(
               Aggregation.group("product.name")
                     .count().as("count"),
               Aggregation.sort(Sort.by(Sort.Direction.DESC, "count"))
         );
 
-        AggregationResults<UserSearchCountDto> results = mongoTemplate.aggregate(aggregation, "log_price", UserSearchCountDto.class);
+        AggregationResults<ProductAndRegistrationQuantity> results = mongoTemplate.aggregate(
+              aggregation, "log_price", ProductAndRegistrationQuantity.class);
         return results.getMappedResults();
     }
 }
